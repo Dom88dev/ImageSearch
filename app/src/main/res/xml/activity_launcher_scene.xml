@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/begin"
+        motion:constraintSetEnd="@+id/mid"
+        motion:constraintSetStart="@id/start"
+        motion:duration="2000"
+        motion:autoTransition="animateToEnd"
+        >
+       <KeyFrameSet>
+       </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        android:id="@+id/fin"
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/mid"
+        motion:duration="1000"
+        motion:autoTransition="animateToEnd"
+        >
+        <KeyFrameSet>
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/oval"
+            motion:layout_constraintWidth_percent=".1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintDimensionRatio="w, 1:1"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintEnd_toStartOf="@id/triangle"
+            motion:layout_constraintHorizontal_chainStyle="packed"
+            />
+        <Constraint
+            android:id="@+id/triangle"
+            motion:layout_constraintWidth_percent=".12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintDimensionRatio="w,1:1"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/oval"
+            motion:layout_constraintEnd_toStartOf="@id/rectangle"
+            />
+        <Constraint
+            android:id="@+id/rectangle"
+            motion:layout_constraintWidth_percent=".1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintDimensionRatio="w,1:1"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toEndOf="@id/triangle"
+            motion:layout_constraintEnd_toEndOf="parent"
+            />
+        <Constraint
+            android:id="@+id/letter0"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/guideline_start"
+            android:alpha="0"
+            />
+        <Constraint
+            android:id="@+id/letter1"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter3"
+            motion:layout_constraintStart_toEndOf="@id/letter0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+            android:alpha="0"
+            />
+        <Constraint
+            android:id="@+id/letter2"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/guideline_top"
+            android:alpha="0"
+            />
+        <Constraint
+            android:id="@+id/letter3"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toEndOf="@id/guideline_end"
+            motion:layout_constraintStart_toEndOf="@id/letter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/letter1"
+            android:alpha="0"
+            />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/mid">
+        <Constraint
+            android:id="@+id/oval"
+            motion:layout_constraintWidth_percent=".1"
+            motion:layout_constraintEnd_toStartOf="@id/guideline_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+            motion:layout_constraintDimensionRatio="w, 1:1" />
+        <Constraint
+            android:id="@+id/triangle"
+            motion:layout_constraintWidth_percent=".12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline_top"
+            motion:layout_constraintDimensionRatio="w,1:1"
+            motion:layout_constraintStart_toStartOf="@id/letter1" />
+        <Constraint
+            android:id="@+id/rectangle"
+            motion:layout_constraintWidth_percent=".1"
+            motion:layout_constraintEnd_toEndOf="@id/letter2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/letter2"
+            motion:layout_constraintDimensionRatio="w,1:1" />
+        <Constraint
+            android:id="@+id/letter0"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/guideline_start"
+            android:alpha="0"
+            />
+        <Constraint
+            android:id="@+id/letter1"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter3"
+            motion:layout_constraintStart_toEndOf="@id/letter0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+            android:alpha="0"
+            />
+        <Constraint
+            android:id="@+id/letter2"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/guideline_top"
+            android:alpha="0"
+            />
+        <Constraint
+            android:id="@+id/letter3"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toEndOf="@id/guideline_end"
+            motion:layout_constraintStart_toEndOf="@id/letter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/letter1"
+            android:alpha="0"
+            />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/letter0"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/guideline_start" />
+        <Constraint
+            android:id="@+id/letter1"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter3"
+            motion:layout_constraintStart_toEndOf="@id/letter0"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline_bottom" />
+        <Constraint
+            android:id="@+id/letter2"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toStartOf="@id/letter3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/guideline_top" />
+        <Constraint
+            android:id="@+id/letter3"
+            motion:layout_constraintWidth_percent=".24"
+            motion:layout_constraintEnd_toEndOf="@id/guideline_end"
+            motion:layout_constraintStart_toEndOf="@id/letter1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/letter1" />
+        <Constraint
+            android:id="@+id/oval"
+            motion:layout_constraintWidth_percent=".1"
+            motion:layout_constraintEnd_toStartOf="@id/guideline_start"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+            motion:layout_constraintDimensionRatio="w, 1:1" />
+        <Constraint
+            android:id="@+id/triangle"
+            motion:layout_constraintWidth_percent=".12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/guideline_top"
+            motion:layout_constraintDimensionRatio="w,1:1"
+            motion:layout_constraintStart_toStartOf="@id/letter1" />
+        <Constraint
+            android:id="@+id/rectangle"
+            motion:layout_constraintWidth_percent=".1"
+            motion:layout_constraintEnd_toEndOf="@id/letter2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@id/letter2"
+            motion:layout_constraintDimensionRatio="w,1:1" />
+    </ConstraintSet>
+</MotionScene>
