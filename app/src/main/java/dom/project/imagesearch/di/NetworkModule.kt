@@ -43,6 +43,7 @@ val networkModule = module {
 fun createGson(): Gson {
     return GsonBuilder()
             .setLenient()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.000+x")
             .create()
 }
 
