@@ -12,25 +12,30 @@ class LauncherActivity : BaseActivity<ActivityLauncherBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.root.addTransitionListener(object : MotionLayout.TransitionListener{
+        binding.root.addTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,
                 startId: Int,
                 endId: Int
-            ) {}
+            ) {
+            }
 
             override fun onTransitionChange(
                 motionLayout: MotionLayout?,
                 startId: Int,
                 endId: Int,
                 progress: Float
-            ) {}
+            ) {
+            }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
                 if (currentId == R.id.end) {
                     startActivity(Intent(this@LauncherActivity, MainActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    }, ActivityOptionsCompat.makeSceneTransitionAnimation(this@LauncherActivity).toBundle())
+                    },
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(this@LauncherActivity)
+                            .toBundle()
+                    )
                 }
             }
 
@@ -39,7 +44,8 @@ class LauncherActivity : BaseActivity<ActivityLauncherBinding>() {
                 triggerId: Int,
                 positive: Boolean,
                 progress: Float
-            ) {}
+            ) {
+            }
 
         })
     }

@@ -5,9 +5,11 @@
       <map>
         <entry key="app/src/main/res/drawable/oval_pink.xml" value="0.23055555555555557" />
         <entry key="app/src/main/res/drawable/rectangle_pink.xml" value="0.23055555555555557" />
+        <entry key="app/src/main/res/drawable/round_rectangle_black.xml" value="0.2851851851851852" />
         <entry key="app/src/main/res/drawable/triangle_pink.xml" value="0.23055555555555557" />
         <entry key="app/src/main/res/layout/activity_launcher.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_image.xml" value="0.18365287588294651" />
       </map>
     </option>
   </component>

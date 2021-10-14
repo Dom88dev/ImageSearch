@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">이미지 검색</string>
-
+    <string name="hint_input">검색어를 입력하세요.</string>
+    <string name="button_image_search">이미지를 검색하기 위한 버튼(트리거)</string>
+    <string name="button_scroll_top">이미지 리스트 스크롤을 최상단으로 한번에 올려주는 버튼</string>
 </resources>

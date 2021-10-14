@@ -1,19 +1,16 @@
 package dom.project.imagesearch.di
 
-import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dom.project.imagesearch.BuildConfig
-import dom.project.imagesearch.etc.KAKAO_BASE_URL
-import dom.project.imagesearch.etc.KAKAO_REST_API_KEY
-import dom.project.imagesearch.etc.RetrofitApiCallAdapterFactory
-import dom.project.imagesearch.model.remote.KakaoApi
+import dom.project.imagesearch.model.remote.api.KakaoApi
+import dom.project.imagesearch.utills.KAKAO_BASE_URL
+import dom.project.imagesearch.utills.KAKAO_REST_API_KEY
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,11 +27,9 @@ val networkModule = module {
 
     factory { createGson() }
 
-    factory { RetrofitApiCallAdapterFactory() }
-
     factory { provideInterceptor() }
 
-    single { provideRetrofit(get(), get(), get(), get()) }
+    single { provideRetrofit(get(), get(), get()) }
 
     single(createdAtStart = false) { get<Retrofit>().create(KakaoApi::class.java) }
 
@@ -42,9 +37,9 @@ val networkModule = module {
 
 fun createGson(): Gson {
     return GsonBuilder()
-            .setLenient()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.000+x")
-            .create()
+        .setLenient()
+        .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.000+z")
+        .create()
 }
 
 fun provideInterceptor(): Interceptor {
@@ -57,7 +52,7 @@ fun provideInterceptor(): Interceptor {
 }
 
 
-fun provideRetrofit(cache: Cache, interceptor: Interceptor, gson: Gson, callAdapter: RetrofitApiCallAdapterFactory): Retrofit {
+fun provideRetrofit(cache: Cache, interceptor: Interceptor, gson: Gson): Retrofit {
     val client = OkHttpClient.Builder().apply {
         cache(cache)
         connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
@@ -73,11 +68,10 @@ fun provideRetrofit(cache: Cache, interceptor: Interceptor, gson: Gson, callAdap
 
     }.build()
     return Retrofit.Builder()
-            .baseUrl(KAKAO_BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .addCallAdapterFactory(callAdapter)
-            .client(client)
-            .build()
+        .baseUrl(KAKAO_BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create(gson))
+        .client(client)
+        .build()
 }
 
 
