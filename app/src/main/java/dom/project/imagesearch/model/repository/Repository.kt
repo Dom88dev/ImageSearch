@@ -1,4 +1,4 @@
-package dom.project.imagesearch.repository
+package dom.project.imagesearch.model.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

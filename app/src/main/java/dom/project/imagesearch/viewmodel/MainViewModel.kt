@@ -4,7 +4,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dom.project.imagesearch.base.BaseViewModel
 import dom.project.imagesearch.model.remote.dto.Document
-import dom.project.imagesearch.repository.Repository
+import dom.project.imagesearch.model.repository.Repository
 import kotlinx.coroutines.flow.Flow
 
 class MainViewModel(private val repository: Repository) : BaseViewModel() {
