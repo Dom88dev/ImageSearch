@@ -2,6 +2,7 @@ package dom.project.imagesearch.view
 
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.coroutineScope
 import androidx.paging.LoadState
@@ -12,6 +13,7 @@ import dom.project.imagesearch.model.remote.dto.Document
 import dom.project.imagesearch.utills.LAST_SEARCH_KEYWORD
 import dom.project.imagesearch.view.adapter.ImageAdapter
 import dom.project.imagesearch.view.adapter.ImageItemDecoration
+import dom.project.imagesearch.view.adapter.ImageLoadStateAdapter
 import dom.project.imagesearch.viewmodel.MainViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
@@ -40,13 +42,35 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
 
     private fun initViews() {
         binding.list.addItemDecoration(ImageItemDecoration())
-        binding.list.adapter = adapter
+        binding.list.adapter =
+            adapter.withLoadStateFooter(footer = ImageLoadStateAdapter(binding.root) { adapter.retry() })
 
-        binding.buttonSearch.setOnClickListener {
-            updateSearchFromInput()
+        adapter.addLoadStateListener { loadState ->
+            // show empty list
+            val isListEmpty = loadState.refresh is LoadState.NotLoading && adapter.itemCount == 0
+            //todo emptyList show
+
+            // Only show the list if refresh succeeds.
+            binding.list.isVisible = loadState.source.refresh is LoadState.NotLoading
+            // Show loading spinner during initial load or refresh.
+            if(loadState.source.refresh is LoadState.Loading) showProgressing() else hideProgressing()
+            // Show the retry state if initial load or refresh fails.
+            binding.reload.isVisible = loadState.source.refresh is LoadState.Error
+
+            // Toast on any error, regardless of whether it came from RemoteMediator or PagingSource
+            val errorState = loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+            errorState?.let {
+                //todo snackbar
+//                Toast.makeText(
+//                    this,
+//                    "\uD83D\uDE28 Wooops ${it.error}",
+//                    Toast.LENGTH_LONG
+//                ).show()
+            }
         }
-
-
     }
 
     private fun initSearch(keyword: String) {
@@ -73,10 +97,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
     private fun updateSearchFromInput() {
         //todo timer 처리..
         timer?.cancel()
-        binding.inputSearch.text.let {
-            if (it.isNotBlank()) {
+        binding.inputSearch.text?.let {
+            binding.list.isVisible = it.isNotBlank()
+            if (binding.list.isVisible) {
                 search(it.toString())
             }
+            //todo empty list show
         }
 
     }
