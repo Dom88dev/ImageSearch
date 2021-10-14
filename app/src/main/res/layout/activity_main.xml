@@ -8,34 +8,27 @@
     android:padding="16dp"
     tools:context=".view.MainActivity">
 
-    <EditText
-        android:id="@+id/input_search"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:hint="@string/hint_input"
-        android:imeOptions="actionSearch"
-        android:importantForAutofill="no"
-        android:inputType="textShortMessage"
-        android:lines="1"
-        android:textColor="@color/pink"
-        app:layout_constraintBottom_toBottomOf="@id/button_search"
-        app:layout_constraintEnd_toStartOf="@id/button_search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/button_search"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/round_rectangle_black"
-        android:contentDescription="@string/button_image_search"
-        android:elevation="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/app_icon"
-        app:layout_constraintDimensionRatio="w, 1:1.2"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent=".2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_input"
+            android:imeOptions="actionSearch"
+            android:importantForAutofill="no"
+            android:inputType="textShortMessage"
+            android:lines="1"
+            android:textColor="@color/pink" />
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
@@ -44,15 +37,29 @@
         android:layout_marginTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_search"
+        app:layout_constraintTop_toBottomOf="@id/input_layout"
         app:spanCount="3"
         tools:listitem="@layout/item_image" />
+
+    <ImageButton
+        android:id="@+id/reload"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="w,1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_layout"
+        app:layout_constraintWidth_percent=".2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_scroll_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/button_scroll_top"
+        android:contentDescription="@string/desc_button_scroll_top"
         android:enabled="false"
         android:src="@drawable/ic_arrow_circle_up"
         android:visibility="invisible"
