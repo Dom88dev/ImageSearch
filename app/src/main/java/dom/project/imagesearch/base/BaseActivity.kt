@@ -40,7 +40,13 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), DialogListen
         비동기로 연속적인 프로그레스 다이얼로그 추가 처리를 하게 되면 fragment is already added 라는 exception 발생.
         해당 에러를 방지하는 것이 멀테 쓰레드중 완벽하게는 힘들다고 판단하여 프로그레스 다이얼로그를 없애고
         프로그레스바 객체를 생성해 액티비티의 레이아웃에 add 시켜 visibility를 조정해 로딩상태를 표시하도록 수정.*/
-    private val progressBar: ProgressBar by lazy { ProgressBar(this, null, android.R.attr.progressBarStyleLarge) }
+    private val progressBar: ProgressBar by lazy {
+        ProgressBar(
+            this,
+            null,
+            android.R.attr.progressBarStyleLarge
+        )
+    }
 
     // BaseActivity를 상속한 Activity에서 보다 간편하게 프로그레스바를 추가하기 위해 만들어진 함수
     // 필수 구현인 initViewBinding() 함수 내에서 binding 구현 후 호출해주면 된다.

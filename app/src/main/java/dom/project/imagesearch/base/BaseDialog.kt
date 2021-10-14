@@ -1,7 +1,6 @@
 package dom.project.imagesearch.base
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 
-abstract class BaseDialog<T : ViewBinding>(private val dialogListener: DialogListener) : DialogFragment() {
+abstract class BaseDialog<T : ViewBinding>(private val dialogListener: DialogListener) :
+    DialogFragment() {
 
     @JvmField
     val TAG = this::class.java.simpleName
@@ -33,12 +33,18 @@ abstract class BaseDialog<T : ViewBinding>(private val dialogListener: DialogLis
             listener = dialogListener
         } catch (e: ClassCastException) {
             // The activity doesn't implement the interface, throw exception
-            throw ClassCastException((context.toString() +
-                    " must implement DialogAlertTaskListener"))
+            throw ClassCastException(
+                (context.toString() +
+                        " must implement DialogAlertTaskListener")
+            )
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         initBinding(inflater, container)
         return binding.root
     }
