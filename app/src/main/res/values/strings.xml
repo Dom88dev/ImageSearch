@@ -8,4 +8,6 @@
     <string name="text_info_keyword_blank">검색어가 비어 있습니다.\n검색어를 입력해주세요.</string>
     <string name="desc_viewer_image">검색된 이미지의 자세히 보기</string>
     <string name="desc_list_item_image">검색되어진 이미지 목록에서의 이미지</string>
+    <string name="desc_button_o">앱 종료 수락 버튼</string>
+    <string name="desc_button_x">앱 종료 취소 버튼</string>
 </resources>

@@ -2,6 +2,10 @@ package dom.project.imagesearch.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.ViewTreeObserver
+import android.view.Window
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityOptionsCompat
@@ -12,6 +16,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dom.project.imagesearch.base.BaseActivity
+import dom.project.imagesearch.base.DialogListener
 import dom.project.imagesearch.base.ItemClickListener
 import dom.project.imagesearch.databinding.ActivityMainBinding
 import dom.project.imagesearch.utills.LAST_SEARCH_KEYWORD
@@ -19,6 +24,7 @@ import dom.project.imagesearch.utills.createSnackBarMessage
 import dom.project.imagesearch.view.adapter.ImageAdapter
 import dom.project.imagesearch.view.adapter.ImageItemDecoration
 import dom.project.imagesearch.view.adapter.ImageLoadStateAdapter
+import dom.project.imagesearch.view.dialog.DialogExit
 import dom.project.imagesearch.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -163,34 +169,41 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
         outState.putString(LAST_SEARCH_KEYWORD, binding.inputSearch.text.toString())
     }
 
-    override fun onDestroy() {
-        finishAffinity()
-        super.onDestroy()
-    }
 
     override fun initViewBinding() {
         binding = ActivityMainBinding.inflate(layoutInflater)
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
-        // todo 종료 팝업
+        // 종료 팝업
+        showDialog(DialogExit(this))
     }
 
     override fun <T> onClickItem(item: T) {
-        if (item is ImageAdapter.ViewData) {
-            // go to viewer activity
-            startActivity(
-                Intent(this, ViewerActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
-                    putExtra("data", item.data)
-                },
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    this,
-                    item.view,
-                    item.view.transitionName
-                ).toBundle()
-            )
+        when(item) {
+            is ImageAdapter.ViewData -> {
+                // go to viewer activity
+                startActivity(
+                    Intent(this, ViewerActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        putExtra("data", item.data)
+                    },
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this,
+                        item.view,
+                        item.view.transitionName
+                    ).toBundle()
+                )
+            }
+        }
+
+    }
+
+    override fun <T> onClick(data: T) {
+        if (data is Boolean) {
+            if (data) {
+                finishAffinity()
+            }
         }
     }
 }

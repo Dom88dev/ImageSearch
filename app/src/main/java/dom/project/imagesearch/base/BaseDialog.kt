@@ -1,12 +1,14 @@
 package dom.project.imagesearch.base
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
+import dom.project.imagesearch.R
 
 abstract class BaseDialog<T : ViewBinding>(private val dialogListener: DialogListener) :
     DialogFragment() {
@@ -23,7 +25,7 @@ abstract class BaseDialog<T : ViewBinding>(private val dialogListener: DialogLis
         binding = viewBinding
     }
 
-    private lateinit var listener: DialogListener
+    protected lateinit var listener: DialogListener
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -53,11 +55,11 @@ abstract class BaseDialog<T : ViewBinding>(private val dialogListener: DialogLis
         super.onViewCreated(view, savedInstanceState)
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.setCancelable(false)
-//        dialog?.window?.statusBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            resources.getColor(R.color.colorStatusBarOnDialog, null)
-//        } else {
-//            resources.getColor(R.color.colorStatusBarOnDialog)
-//        }
+        dialog?.window?.statusBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            resources.getColor(R.color.half_transparent_black, null)
+        } else {
+            resources.getColor(R.color.half_transparent_black)
+        }
     }
 
 }

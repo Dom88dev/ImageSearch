@@ -111,7 +111,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), DialogListen
             transaction.remove(prev)
         }
         transaction.addToBackStack(null)
-        dialog.show(supportFragmentManager, "dialog")
+        dialog.show(transaction, "dialog")
     }
 
 
