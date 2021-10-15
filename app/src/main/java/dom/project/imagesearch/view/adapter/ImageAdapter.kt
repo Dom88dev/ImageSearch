@@ -1,6 +1,7 @@
 package dom.project.imagesearch.view.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -28,7 +29,7 @@ class ImageAdapter(private val listener: ItemClickListener) :
                 .into(holder.binding.item)
 
             holder.binding.item.setOnClickListener {
-                listener.onClickItem(data)
+                listener.onClickItem(ViewData(it, data))
             }
         }
     }
@@ -45,6 +46,8 @@ class ImageAdapter(private val listener: ItemClickListener) :
 
     inner class ImageItemViewHolder(val binding: ItemImageBinding) :
         RecyclerView.ViewHolder(binding.root)
+
+    data class ViewData(val view: View, val data: Document)
 
     companion object {
         private val IMAGE_COMPARATOR = object : DiffUtil.ItemCallback<Document>() {

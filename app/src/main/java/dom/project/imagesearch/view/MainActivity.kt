@@ -1,8 +1,10 @@
 package dom.project.imagesearch.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.coroutineScope
@@ -12,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import dom.project.imagesearch.base.BaseActivity
 import dom.project.imagesearch.base.ItemClickListener
 import dom.project.imagesearch.databinding.ActivityMainBinding
-import dom.project.imagesearch.model.remote.dto.Document
 import dom.project.imagesearch.utills.LAST_SEARCH_KEYWORD
 import dom.project.imagesearch.utills.createSnackBarMessage
 import dom.project.imagesearch.view.adapter.ImageAdapter
@@ -177,8 +178,19 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
     }
 
     override fun <T> onClickItem(item: T) {
-        if (item is Document) {
-            // todo go to detail activity
+        if (item is ImageAdapter.ViewData) {
+            // go to viewer activity
+            startActivity(
+                Intent(this, ViewerActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    putExtra("data", item.data)
+                },
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this,
+                    item.view,
+                    item.view.transitionName
+                ).toBundle()
+            )
         }
     }
 }

@@ -8,7 +8,6 @@
         motion:constraintSetEnd="@+id/mid"
         motion:constraintSetStart="@id/start"
         motion:duration="2000">
-        <KeyFrameSet></KeyFrameSet>
     </Transition>
 
     <Transition
@@ -17,7 +16,6 @@
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/mid"
         motion:duration="1000">
-        <KeyFrameSet></KeyFrameSet>
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

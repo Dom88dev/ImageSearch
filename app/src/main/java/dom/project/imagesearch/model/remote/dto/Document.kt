@@ -1,8 +1,12 @@
 package dom.project.imagesearch.model.remote.dto
 
+import android.os.Parcelable
+import androidx.versionedparcelable.VersionedParcelize
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
+@Parcelize
 data class Document(
     @SerializedName("collection")       // 컬렉션(카테고리 느낌)
     val category: String,
@@ -27,5 +31,4 @@ data class Document(
 
     @SerializedName("datetime")         // 문서 작성시간
     val dateTime: Date
-) {
-}
+): Parcelable {}
