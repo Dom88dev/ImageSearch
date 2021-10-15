@@ -12,7 +12,7 @@ class LauncherActivity : BaseActivity<ActivityLauncherBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.root.addTransitionListener(object : MotionLayout.TransitionListener {
+        binding.motionContainer.addTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,
                 startId: Int,

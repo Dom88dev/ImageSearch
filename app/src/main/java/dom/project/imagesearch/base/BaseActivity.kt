@@ -56,13 +56,8 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), DialogListen
         progressBar.visibility = View.GONE
         progressBar.indeterminateDrawable.setTint(
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                resources.getColor(R.color.purple_200, null)
-            else resources.getColor(R.color.design_default_color_secondary)
-        )
-        progressBar.setBackgroundColor(
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-                resources.getColor(R.color.purple_200, null)
-            else resources.getColor(R.color.purple_200)
+                resources.getColor(R.color.pink, null)
+            else resources.getColor(R.color.pink)
         )
         if (binding.root is ConstraintLayout) {
             val layoutParam = ConstraintLayout.LayoutParams(0, 0)
@@ -74,10 +69,8 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), DialogListen
             (binding.root as ConstraintLayout).addView(progressBar, layoutParam)
         } else if (binding.root is ViewGroup) {
             val children = (binding.root as ViewGroup).children
-            var isFirst = true
-            children.forEach {
-                if (it is ConstraintLayout && isFirst) {
-                    isFirst = false
+            children.find { it is ConstraintLayout }?.let {
+                if (it is ConstraintLayout) {
                     val layoutParam = ConstraintLayout.LayoutParams(it.layoutParams)
                     layoutParam.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
                     layoutParam.startToStart = ConstraintLayout.LayoutParams.PARENT_ID

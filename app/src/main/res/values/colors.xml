@@ -13,6 +13,7 @@
     <color name="pink_dark">#b4004e</color>
     <color name="pink_light">#ff77a9</color>
 
+    <color name="half_transparent_black">#80000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

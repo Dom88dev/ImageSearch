@@ -1,112 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    app:layoutDescription="@xml/activity_launcher_scene"
     tools:context=".view.LauncherActivity">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".22" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_end"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent=".9" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".48" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline_bottom"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".52" />
-
-    <ImageView
-        android:id="@+id/letter0"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/letter_0"
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layoutDescription="@xml/activity_launcher_scene"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/letter1"
-        app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent=".24" />
+        app:layout_constraintDimensionRatio="w,1"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/letter1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/letter_1"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
-        app:layout_constraintEnd_toStartOf="@id/letter3"
-        app:layout_constraintStart_toEndOf="@id/letter0"
-        app:layout_constraintWidth_percent=".24" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".22" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".9" />
 
-    <ImageView
-        android:id="@+id/letter2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/letter_2"
-        app:layout_constraintEnd_toStartOf="@id/letter3"
-        app:layout_constraintTop_toBottomOf="@id/guideline_top"
-        app:layout_constraintWidth_percent=".24" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".45" />
 
-    <ImageView
-        android:id="@+id/letter3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:src="@drawable/letter_3"
-        app:layout_constraintEnd_toEndOf="@id/guideline_end"
-        app:layout_constraintStart_toEndOf="@id/letter1"
-        app:layout_constraintTop_toBottomOf="@id/letter1"
-        app:layout_constraintWidth_percent=".24" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5" />
 
-    <ImageView
-        android:id="@+id/oval"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/oval_pink"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
-        app:layout_constraintDimensionRatio="w, 1:1"
-        app:layout_constraintEnd_toStartOf="@id/guideline_start"
-        app:layout_constraintWidth_percent=".1" />
+        <ImageView
+            android:id="@+id/letter0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/letter_0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1"
+            app:layout_constraintEnd_toStartOf="@id/letter1"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".24" />
 
-    <ImageView
-        android:id="@+id/triangle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/triangle_pink"
-        app:layout_constraintBottom_toBottomOf="@id/guideline_top"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintStart_toStartOf="@id/letter1"
-        app:layout_constraintWidth_percent=".12" />
-
-
-    <ImageView
-        android:id="@+id/rectangle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/rectangle_pink"
-        app:layout_constraintBottom_toBottomOf="@id/letter2"
-        app:layout_constraintDimensionRatio="w,1:1"
-        app:layout_constraintEnd_toEndOf="@id/letter2"
-        app:layout_constraintWidth_percent=".1" />
+        <ImageView
+            android:id="@+id/letter1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/letter_1"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+            app:layout_constraintDimensionRatio="w,1"
+            app:layout_constraintEnd_toStartOf="@id/letter3"
+            app:layout_constraintStart_toEndOf="@id/letter0"
+            app:layout_constraintWidth_percent=".24" />
 
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+        <ImageView
+            android:id="@+id/letter2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/letter_2"
+            app:layout_constraintDimensionRatio="w,1"
+            app:layout_constraintEnd_toStartOf="@id/letter3"
+            app:layout_constraintTop_toBottomOf="@id/guideline_bottom"
+            app:layout_constraintWidth_percent=".24" />
+
+        <ImageView
+            android:id="@+id/letter3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/letter_3"
+            app:layout_constraintDimensionRatio="w,1"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toEndOf="@id/letter1"
+            app:layout_constraintTop_toBottomOf="@id/letter1"
+            app:layout_constraintWidth_percent=".24" />
+
+        <ImageView
+            android:id="@+id/oval"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/oval_pink"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+            app:layout_constraintDimensionRatio="w, 1:1"
+            app:layout_constraintEnd_toStartOf="@id/guideline_start"
+            app:layout_constraintWidth_percent=".1" />
+
+        <ImageView
+            android:id="@+id/triangle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/triangle_pink"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_top"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintStart_toStartOf="@id/letter1"
+            app:layout_constraintWidth_percent=".12" />
+
+
+        <ImageView
+            android:id="@+id/rectangle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/rectangle_pink"
+            app:layout_constraintBottom_toBottomOf="@id/letter2"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="@id/letter2"
+            app:layout_constraintWidth_percent=".1" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
