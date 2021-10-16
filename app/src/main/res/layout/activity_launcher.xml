@@ -45,12 +45,12 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent=".5" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/letter0"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/letter_0"
+            app:srcCompat="@drawable/letter_0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="w,1"
             app:layout_constraintEnd_toStartOf="@id/letter1"
@@ -58,11 +58,11 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".24" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/letter1"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/letter_1"
+            app:srcCompat="@drawable/letter_1"
             app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
             app:layout_constraintDimensionRatio="w,1"
             app:layout_constraintEnd_toStartOf="@id/letter3"
@@ -70,53 +70,72 @@
             app:layout_constraintWidth_percent=".24" />
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/letter2"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/letter_2"
+            app:srcCompat="@drawable/letter_2"
             app:layout_constraintDimensionRatio="w,1"
             app:layout_constraintEnd_toStartOf="@id/letter3"
             app:layout_constraintTop_toBottomOf="@id/guideline_bottom"
             app:layout_constraintWidth_percent=".24" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/letter3"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/letter_3"
+            app:srcCompat="@drawable/letter_3_1"
             app:layout_constraintDimensionRatio="w,1"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toEndOf="@id/letter1"
             app:layout_constraintTop_toBottomOf="@id/letter1"
             app:layout_constraintWidth_percent=".24" />
 
-        <ImageView
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/letter3_triangle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent=".11"
+            app:layout_constraintDimensionRatio="w,1"
+            app:srcCompat="@drawable/ic_triangle"
+            app:tint="@color/white"
+            app:layout_constraintStart_toEndOf="@id/letter2"
+            app:layout_constraintEnd_toEndOf="@id/letter3"
+            app:layout_constraintTop_toTopOf="@id/guideline_bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias=".05"
+            app:layout_constraintHorizontal_bias=".2"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/oval"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/oval_pink"
             app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
             app:layout_constraintDimensionRatio="w, 1:1"
             app:layout_constraintEnd_toStartOf="@id/guideline_start"
-            app:layout_constraintWidth_percent=".1" />
+            app:layout_constraintWidth_percent=".1"
+            app:srcCompat="@drawable/ic_circle"
+            app:tint="@color/pink"
+            />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/triangle"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/triangle_pink"
+            app:srcCompat="@drawable/ic_triangle"
             app:layout_constraintBottom_toBottomOf="@id/guideline_top"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintStart_toStartOf="@id/letter1"
-            app:layout_constraintWidth_percent=".12" />
+            app:layout_constraintWidth_percent=".11" />
 
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/rectangle"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/rectangle_pink"
+            app:srcCompat="@drawable/ic_rectangle"
             app:layout_constraintBottom_toBottomOf="@id/letter2"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintEnd_toEndOf="@id/letter2"

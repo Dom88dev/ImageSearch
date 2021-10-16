@@ -3,6 +3,7 @@ package dom.project.imagesearch.base
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -13,6 +14,8 @@ import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 import dom.project.imagesearch.R
+import dom.project.imagesearch.utills.createSnackBarMessage
+import kotlinx.coroutines.CoroutineExceptionHandler
 
 
 abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), DialogListener {
@@ -25,6 +28,10 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), DialogListen
     // 뷰바인딩 객체를 생성해 binding객체를 초기화해준다.
     abstract fun initViewBinding()
 
+    protected val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+        Log.e(TAG, "Coroutines ERROR\n${throwable.stackTraceToString()}")
+        hideProgressingByTrouble(if (throwable.localizedMessage != null) throwable.localizedMessage else "")
+    }
 
     @SuppressLint("InlinedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -101,7 +108,7 @@ abstract class BaseActivity<T : ViewBinding> : AppCompatActivity(), DialogListen
     @SuppressLint("UseCompatLoadingForDrawables")
     fun hideProgressingByTrouble(error: String = "") {
         hideProgressing()
-//        Utils.createSnackBarMessage(this.binding.root, if (error.isBlank()) "문제가 발생했습니다.\n잠시 후 다시 시도해주십시오." else error)
+        createSnackBarMessage(this.binding.root, if (error.isBlank()) "문제가 발생했습니다.\n잠시 후 다시 시도해주십시오." else error)
     }
 
     fun showDialog(dialog: DialogFragment) {

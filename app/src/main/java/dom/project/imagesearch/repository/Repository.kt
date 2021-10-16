@@ -1,4 +1,4 @@
-package dom.project.imagesearch.model.repository
+package dom.project.imagesearch.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -22,4 +22,6 @@ class Repository(
         ),
         pagingSourceFactory = { ImagePagingSource(apiService, query) }
     ).flow
+
+    //todo 로컬에 검색기록을 저장해서 보여주는 기능을 추가하는 것도 ㄱㅊ할듯
 }

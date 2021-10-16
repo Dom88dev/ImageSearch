@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.ViewerActivity"
+    android:background="@color/gray_dark"
     >
 
     <LinearLayout
@@ -14,18 +15,17 @@
         android:orientation="vertical"
         >
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/app_icon"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/desc_viewer_image"
             android:transitionName="image"
             />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

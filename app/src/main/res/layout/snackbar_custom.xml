@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/oval"
             app:layout_constraintWidth_percent=".1"
             android:layout_width="0dp"
@@ -26,21 +26,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/triangle"
             app:layout_constraintHorizontal_chainStyle="packed"
-            android:src="@drawable/oval_pink"
+            android:src="@drawable/ic_circle"
             />
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/triangle"
-            app:layout_constraintWidth_percent=".12"
+            app:layout_constraintWidth_percent=".11"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/oval"
             app:layout_constraintEnd_toStartOf="@id/rectangle"
-            android:src="@drawable/triangle_pink"
+            android:src="@drawable/ic_triangle"
             android:layout_marginTop="10dp"
             />
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/rectangle"
             app:layout_constraintWidth_percent=".1"
             android:layout_width="0dp"
@@ -50,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="@id/triangle"
             app:layout_constraintStart_toEndOf="@id/triangle"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/rectangle_pink"
+            android:src="@drawable/ic_rectangle"
             />
 
         <TextView

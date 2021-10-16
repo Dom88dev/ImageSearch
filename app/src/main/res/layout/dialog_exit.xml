@@ -18,24 +18,25 @@
         android:background="@color/gray_dark"
         >
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/ask_exit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="검색을 그만 두시겠습니까?"
+            android:text="@string/ask_exit_app"
             android:textColor="@color/pink"
+            android:background="@color/black"
             android:textStyle="bold"
             android:textSize="20sp"
             android:padding="8dp"
             />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_exit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/squid_choice_exit"
+            app:srcCompat="@drawable/squid_choice_exit"
             android:adjustViewBounds="true"
-            android:contentDescription="" />
+            />
 
         <LinearLayout
             android:id="@+id/button_box"
@@ -46,24 +47,23 @@
             android:padding="20dp"
             >
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_o"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/button_o"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/desc_button_o"
                 />
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/button_x"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/button_x"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:contentDescription="@string/desc_button_x" />
+                />
 
         </LinearLayout>
 

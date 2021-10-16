@@ -2,10 +2,6 @@ package dom.project.imagesearch.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.view.ViewTreeObserver
-import android.view.Window
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityOptionsCompat
@@ -16,7 +12,6 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import dom.project.imagesearch.base.BaseActivity
-import dom.project.imagesearch.base.DialogListener
 import dom.project.imagesearch.base.ItemClickListener
 import dom.project.imagesearch.databinding.ActivityMainBinding
 import dom.project.imagesearch.utills.LAST_SEARCH_KEYWORD
@@ -134,7 +129,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
             }
         }
 
-        lifecycle.coroutineScope.launch {
+        lifecycle.coroutineScope.launch(exceptionHandler) {
             adapter.loadStateFlow.distinctUntilChangedBy { it.refresh }
                 .filter { it.refresh is LoadState.NotLoading }
                 .collect { binding.list.scrollToPosition(0) }
@@ -144,9 +139,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
     private fun updateSearchFromInput(pressSearchButton: Boolean = false) {
         if (pressSearchButton) timer?.cancel()
         binding.inputSearch.text?.let {
-            lifecycle.coroutineScope.launch(Dispatchers.Main) {
+            lifecycle.coroutineScope.launch(Dispatchers.Main+exceptionHandler) {
                 binding.list.isVisible = it.isNotBlank()
                 binding.keywordBlank.isVisible = it.isBlank()
+                if (binding.noResult.isVisible) binding.noResult.isVisible = false
                 if (binding.list.isVisible) {
                     search(it.toString())
                 }
@@ -157,7 +153,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
 
     private fun search(keyword: String) {
         searchJob?.cancel()
-        searchJob = lifecycle.coroutineScope.launch {
+        searchJob = lifecycle.coroutineScope.launch(exceptionHandler) {
             vm.getSearchImages(keyword).collect {
                 adapter.submitData(it)
             }
@@ -180,7 +176,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
     }
 
     override fun <T> onClickItem(item: T) {
-        when(item) {
+        when (item) {
             is ImageAdapter.ViewData -> {
                 // go to viewer activity
                 startActivity(

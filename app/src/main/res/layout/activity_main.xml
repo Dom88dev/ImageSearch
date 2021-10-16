@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_dark"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".view.MainActivity"
-    >
+    tools:context=".view.MainActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutLinedBoxTextBoxTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,12 +42,11 @@
         app:spanCount="3"
         tools:listitem="@layout/item_image" />
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/reload"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/transparent"
-        android:contentDescription="@string/desc_reload"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_refresh"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@id/input_layout"
         app:layout_constraintWidth_percent=".2" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/no_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,18 +64,17 @@
         android:padding="10dp"
         android:text="@string/text_info_no_result"
         android:textAlignment="center"
-        android:textColor="@color/pink"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:drawableTopCompat="@drawable/squid_no_result"
+        android:visibility="gone"
+        app:drawableBottomCompat="@drawable/squid_no_result"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_layout"
-        android:visibility="gone"
-        />
+        app:layout_constraintTop_toBottomOf="@id/input_layout" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/keyword_blank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,16 +82,15 @@
         android:padding="10dp"
         android:text="@string/text_info_keyword_blank"
         android:textAlignment="center"
-        android:textColor="@color/pink"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:drawableTopCompat="@drawable/squid_blank"
+        android:visibility="gone"
+        app:drawableBottomCompat="@drawable/squid_blank"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_layout"
-        android:visibility="gone"
-        />
+        app:layout_constraintTop_toBottomOf="@id/input_layout" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_scroll_top"

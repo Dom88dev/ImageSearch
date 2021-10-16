@@ -56,9 +56,9 @@ abstract class BaseDialog<T : ViewBinding>(private val dialogListener: DialogLis
         dialog?.setCanceledOnTouchOutside(false)
         dialog?.setCancelable(false)
         dialog?.window?.statusBarColor = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            resources.getColor(R.color.half_transparent_black, null)
+            resources.getColor(R.color.status_bar_color_dialog_on, null)
         } else {
-            resources.getColor(R.color.half_transparent_black)
+            resources.getColor(R.color.status_bar_color_dialog_on)
         }
     }
 
