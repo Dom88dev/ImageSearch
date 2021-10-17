@@ -18,7 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
             android:id="@+id/input_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
