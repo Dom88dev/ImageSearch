@@ -19,9 +19,9 @@ class ImageItemDecoration : RecyclerView.ItemDecoration() {
 
         val position = parent.getChildAdapterPosition(view)
 
-        val size3 = dpToPx(parent.context, 3f)
         val size4 = dpToPx(parent.context, 4f)
         val size2 = dpToPx(parent.context, 2f)
+        val size6 = dpToPx(parent.context, 6f)
 
         when (position % 3) {
             0 -> {
@@ -35,8 +35,8 @@ class ImageItemDecoration : RecyclerView.ItemDecoration() {
                 outRect.left = size4
             }
         }
-        outRect.top = size3
-        outRect.bottom = size3
+
+        outRect.bottom = size6
     }
 
     private fun dpToPx(context: Context, dp: Float): Int {
