@@ -100,6 +100,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
                 }
             }
         })
+
+        //todo 검색어 기록 리스트
+        
     }
 
     private fun initSearchInput() {
