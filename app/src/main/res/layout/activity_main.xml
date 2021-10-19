@@ -30,15 +30,26 @@
             android:textColor="@color/pink" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_keyword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/input_layout"
+        tools:listitem="@layout/item_searched_keyword"
+        android:visibility="gone"
+        />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
+        app:layout_goneMarginTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/input_layout"
+        app:layout_constraintTop_toBottomOf="@id/list_keyword"
         app:spanCount="3"
         tools:listitem="@layout/item_image" />
 
