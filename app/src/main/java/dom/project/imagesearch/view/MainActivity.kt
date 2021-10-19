@@ -2,6 +2,7 @@ package dom.project.imagesearch.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.core.app.ActivityOptionsCompat
@@ -14,11 +15,13 @@ import androidx.recyclerview.widget.RecyclerView
 import dom.project.imagesearch.base.BaseActivity
 import dom.project.imagesearch.base.ItemClickListener
 import dom.project.imagesearch.databinding.ActivityMainBinding
+import dom.project.imagesearch.model.local.entity.SearchedKeyword
 import dom.project.imagesearch.utills.LAST_SEARCH_KEYWORD
 import dom.project.imagesearch.utills.createSnackBarMessage
 import dom.project.imagesearch.view.adapter.ImageAdapter
 import dom.project.imagesearch.view.adapter.ImageItemDecoration
 import dom.project.imagesearch.view.adapter.ImageLoadStateAdapter
+import dom.project.imagesearch.view.adapter.KeywordHistoryAdapter
 import dom.project.imagesearch.view.dialog.DialogExit
 import dom.project.imagesearch.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +38,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
     private val vm: MainViewModel by viewModel()
     private var searchJob: Job? = null
     private val adapter = ImageAdapter(this)
+    private val keywordAdapter = KeywordHistoryAdapter(this)
     private var timer: Timer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,9 +60,28 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
         }
 
         initSearchInput()
+
+        initObservers()
     }
 
     private fun initList() {
+        binding.listKeyword.adapter = keywordAdapter
+        keywordAdapter.addLoadStateListener { loadState ->
+            val isListEmpty = loadState.refresh is LoadState.NotLoading && keywordAdapter.itemCount == 0
+            Log.d("MainActivity", "keyword History : isEmpty = $isListEmpty")
+            binding.listKeyword.isVisible = !isListEmpty
+
+            val errorState = loadState.source.append as? LoadState.Error
+                ?: loadState.source.prepend as? LoadState.Error
+                ?: loadState.append as? LoadState.Error
+                ?: loadState.prepend as? LoadState.Error
+            errorState?.let {
+                Log.e(TAG, "keyword History loading Error : ${it.error}")
+            }
+        }
+        vm.initKeywordHistory(keywordAdapter)
+
+
         binding.list.addItemDecoration(ImageItemDecoration())
         binding.list.adapter =
             adapter.withLoadStateFooter(footer = ImageLoadStateAdapter(binding.root) { adapter.retry() })
@@ -85,6 +108,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
                     binding.root,
                     "\uD83D\uDE28 이런! 죄송힙니다.\n에러가 발생했습니다.\n에러 정보 : ${it.error}"
                 )
+                Log.e(TAG, "Image Search Error : ${it.error}")
             }
         }
 
@@ -100,9 +124,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
                 }
             }
         })
-
-        //todo 검색어 기록 리스트
-        
     }
 
     private fun initSearchInput() {
@@ -163,6 +184,18 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
         }
     }
 
+    private fun initObservers() {
+        vm.snackbar.observe(this, {
+            it?.let {
+                createSnackBarMessage(binding.root, it)
+                vm.onSnackbarShown()
+            }
+        })
+        vm.spinner.observe(this, {
+            if (it) showProgressing() else hideProgressing()
+        })
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(LAST_SEARCH_KEYWORD, binding.inputSearch.text.toString())
@@ -193,6 +226,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), ItemClickListener {
                         item.view.transitionName
                     ).toBundle()
                 )
+            }
+            is String -> {
+                binding.inputSearch.setText(item)
+            }
+            is SearchedKeyword -> {
+                vm.deleteKeyword(item)
             }
         }
 

@@ -31,7 +31,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_searched"
+        android:id="@+id/list_keyword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -49,7 +49,7 @@
         app:layout_goneMarginTop="10dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/list_searched"
+        app:layout_constraintTop_toBottomOf="@id/list_keyword"
         app:spanCount="3"
         tools:listitem="@layout/item_image" />
 

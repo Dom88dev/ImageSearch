@@ -11,7 +11,7 @@ interface Dao {
     @Query("select count(keyword) from history_searched")
     fun getCont(): Int
 
-    @Query("select * from history_searched order by date asc")
+    @Query("select * from history_searched order by date desc")
     fun getHistorySearched(): PagingSource<Int, SearchedKeyword>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
